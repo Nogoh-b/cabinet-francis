@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { actualites } from "@/lib/data";
+import { images } from "@/lib/images";
 import PageHero from "@/components/PageHero";
 import { Stagger, StaggerItem, Reveal } from "@/components/ui";
 
@@ -19,18 +21,21 @@ export default function ActualitesPage() {
 
       <section className="mx-auto max-w-[1280px] px-5 lg:px-8 py-8 lg:py-12">
         <Stagger className="grid lg:grid-cols-3 gap-5 lg:gap-6">
-          {actualites.map((a) => (
+          {actualites.map((a, idx) => (
             <StaggerItem key={a.slug}>
-              <article id={a.slug} className="scroll-mt-24 rounded-[24px] border border-zinc-200 bg-white overflow-hidden hover:border-[#C5A46B]/30 hover:shadow-[0_8px_28px_rgba(11,30,54,0.08)] transition-all flex flex-col h-full">
-                <div className="h-1.5 bg-gradient-to-r from-[#0B1E36] to-[#C5A46B]" />
+              <article id={a.slug} className="group scroll-mt-24 overflow-hidden rounded-[24px] border border-zinc-200 bg-white hover:border-[#C5A46B]/30 hover:shadow-[0_8px_28px_rgba(11,30,54,0.08)] transition-all flex flex-col h-full">
+                <div className="relative h-[168px] overflow-hidden bg-zinc-100">
+                  <Image src={images.actus[idx] ?? images.actus[0]} alt={a.title} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" sizes="(max-width: 1024px) 100vw, 33vw" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-2.5 py-1 text-xs font-semibold text-[#0B1E36] shadow">{a.category}</span>
+                </div>
                 <div className="p-6 flex flex-col flex-1">
-                  <div className="flex flex-wrap items-center gap-2 text-xs">
-                    <span className="rounded-full bg-[#F5EEDB] border border-[#EDE8DE] px-2.5 py-1 font-semibold text-[#8A7655]">{a.category}</span>
-                    <span className="inline-flex items-center gap-1 text-zinc-400"><Calendar className="size-3.5" /> {a.date}</span>
-                    <span className="inline-flex items-center gap-1 text-zinc-400"><Clock className="size-3.5" /> {a.readTime}</span>
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-400">
+                    <span className="inline-flex items-center gap-1"><Calendar className="size-3.5" /> {a.date}</span>
+                    <span className="inline-flex items-center gap-1"><Clock className="size-3.5" /> {a.readTime}</span>
                   </div>
                   <h2 className="mt-3 font-display text-[17px] font-bold leading-tight tracking-tight text-[#0B1E36]">{a.title}</h2>
-                  <p className="mt-2 text-sm leading-6 text-zinc-500 flex-1">{a.excerpt}</p>
+                  <p className="mt-2 text-[14px] leading-6 text-zinc-500 flex-1">{a.excerpt}</p>
                   <p className="mt-4 text-xs leading-5 text-zinc-400">
                     Article d&apos;information générale — ne constitue pas une consultation juridique personnalisée.
                   </p>

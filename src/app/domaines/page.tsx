@@ -1,9 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Anchor, Truck, Banknote, ShieldCheck, Briefcase, Scale, Building2, UsersRound, ArrowRight, Check } from "lucide-react";
 import { domaines } from "@/lib/data";
+import { images } from "@/lib/images";
 import PageHero from "@/components/PageHero";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui";
+
+const domaineImages: Record<string, string> = {
+  "droit-maritime": images.domaines.maritime,
+  "droit-transports": images.domaines.transport,
+  "recouvrement-creances": images.domaines.recouvrement,
+  "droit-assurances": images.domaines.assurances,
+  "droit-affaires": images.domaines.affaires,
+  "contentieux": images.domaines.contentieux,
+  "immobilier-foncier": images.domaines.immobilier,
+  "droit-travail": images.domaines.travail,
+};
 
 export const metadata: Metadata = { title: "Domaines d'intervention" };
 
@@ -23,10 +36,18 @@ export default function DomainesPage() {
         <Stagger className="grid gap-6">
           {domaines.map((d) => {
             const Icon = iconMap[d.icon] ?? Scale;
+            const img = domaineImages[d.slug];
             return (
               <StaggerItem key={d.slug}>
-                <div id={d.slug} className="scroll-mt-24 rounded-[24px] border border-zinc-200 bg-white overflow-hidden hover:border-[#C5A46B]/30 transition-colors">
+                <div id={d.slug} className="scroll-mt-24 overflow-hidden rounded-[24px] border border-zinc-200 bg-white hover:border-[#C5A46B]/30 transition-colors">
                   <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-0">
+                    {img && (
+                      <div className="relative hidden lg:block overflow-hidden border-r border-zinc-200">
+                        <Image src={img} alt={d.title} fill className="object-cover" sizes="520px" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E36]/40 to-transparent" />
+                        <span className="absolute bottom-4 left-4 grid place-items-center size-11 rounded-xl bg-white text-[#0B1E36] shadow-lg"><Icon className="size-5" /></span>
+                      </div>
+                    )}
                     <div className="p-6 lg:p-8">
                       <div className="flex items-center gap-3">
                         <span className="grid place-items-center size-11 rounded-xl bg-[#0B1E36] text-[#C5A46B]">

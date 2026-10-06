@@ -22,12 +22,16 @@
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
+  /* Base légèrement augmentée : 16.5px au lieu des 16px navigateur */
+  font-size: 16.5px;
 }
 
 body {
   background: #ffffff;
   color: #1a1a1a;
   font-family: var(--font-outfit), system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

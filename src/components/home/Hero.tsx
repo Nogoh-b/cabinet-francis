@@ -1,28 +1,41 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Scale, Clock3, Award } from "lucide-react";
 import { cabinet } from "@/lib/data";
+import { images } from "@/lib/images";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#0B1E36]">
-      {/* subtle texture */}
+      {/* Background image */}
+      <Image
+        src={images.hero}
+        alt=""
+        fill
+        priority
+        className="object-cover opacity-[0.22]"
+        sizes="100vw"
+      />
+      {/* Navy overlay to keep text readable */}
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-[#0B1E36]/85 via-[#0B1E36]/70 to-[#0B1E36]/60" />
+      {/* subtle dot texture */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
           backgroundSize: "22px 22px",
         }}
       />
-      {/* gold glow */}
-      <div className="pointer-events-none absolute -top-24 right-[-10%] size-[680px] rounded-full bg-[#C5A46B]/[0.08] blur-[80px]" />
-      <div className="pointer-events-none absolute -bottom-32 left-[-8%] size-[560px] rounded-full bg-[#1E4A7A]/[0.25] blur-[70px]" />
+      {/* gold + blue glows */}
+      <div className="pointer-events-none absolute -top-24 right-[-10%] size-[680px] rounded-full bg-[#C5A46B]/[0.10] blur-[80px]" />
+      <div className="pointer-events-none absolute -bottom-32 left-[-8%] size-[560px] rounded-full bg-[#1E4A7A]/[0.30] blur-[70px]" />
 
       <div className="relative mx-auto max-w-[1280px] px-5 lg:px-8">
-        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10 items-center py-10 lg:py-[54px]">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10 items-center py-12 lg:py-[64px]">
           {/* Left */}
           <div>
             <motion.div
@@ -39,7 +52,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 font-display text-[32px] lg:text-[48px] leading-[0.95] tracking-[-0.03em] text-white text-balance"
+              className="mt-6 font-display text-[34px] lg:text-[52px] leading-[0.95] tracking-[-0.03em] text-white text-balance"
             >
               Cabinet d&apos;Avocats
               <br />
@@ -59,7 +72,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.22 }}
-              className="mt-5 max-w-[560px] text-[17px] leading-7 text-white/75"
+              className="mt-5 max-w-[560px] text-[18px] leading-7 text-white/80"
             >
               {cabinet.slogan}. Un cabinet moderne et rigoureux, au service des{" "}
               <span className="text-white font-medium">particuliers, entreprises et institutions</span> — en droit maritime,

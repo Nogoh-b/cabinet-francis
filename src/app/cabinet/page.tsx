@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { cabinet } from "@/lib/data";
+import { images } from "@/lib/images";
 import PageHero from "@/components/PageHero";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui";
 
@@ -21,8 +23,8 @@ export default function CabinetPage() {
       <section className="mx-auto max-w-[1280px] px-5 lg:px-8 py-10 lg:py-16">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12">
           <Reveal>
-            <h2 className="font-display text-[26px] lg:text-[32px] tracking-[-0.03em] text-[#0B1E36]">Notre histoire</h2>
-            <div className="mt-4 space-y-4 text-[15px] leading-7 text-zinc-600">
+            <h2 className="font-display text-[28px] lg:text-[36px] tracking-[-0.03em] text-[#0B1E36]">Notre histoire</h2>
+            <div className="mt-4 space-y-4 text-[16px] leading-7 text-zinc-600">
               <p>
                 Le <strong className="text-zinc-900">Cabinet d&apos;Avocats Francis EBIANG&apos;NE</strong> est créé en{" "}
                 <strong className="text-zinc-900">juillet 2022</strong>, initialement établi à <strong className="text-zinc-900">Douala</strong>,
@@ -50,7 +52,13 @@ export default function CabinetPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="rounded-[24px] border border-zinc-200 bg-white p-6 lg:p-7">
+          <Reveal delay={0.1} className="space-y-4">
+            <div className="relative overflow-hidden rounded-[20px] border border-zinc-200 h-[220px]">
+              <Image src={images.cabinetFrise} alt="Le cabinet — bureau professionnel" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 520px" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E36]/60 to-transparent" />
+              <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-[#0B1E36]">Sangmélima • 2025 → aujourd&apos;hui</span>
+            </div>
+            <div className="rounded-[24px] border border-zinc-200 bg-white p-6 lg:p-7">
             <p className="text-[11px] font-bold tracking-[0.14em] uppercase text-zinc-400">Frise</p>
             <ol className="mt-5 space-y-5 relative">
               <span className="absolute left-[11px] top-1 bottom-1 w-px bg-zinc-200" aria-hidden />
@@ -71,6 +79,7 @@ export default function CabinetPage() {
                 </li>
               ))}
             </ol>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -79,7 +88,7 @@ export default function CabinetPage() {
       <section className="bg-[#F8F6F0] border-y border-[#EDE8DE]">
         <div className="mx-auto max-w-[1280px] px-5 lg:px-8 py-10 lg:py-14">
           <Reveal>
-            <h2 className="font-display text-[22px] lg:text-[28px] tracking-[-0.03em] text-[#0B1E36]">Notre vision</h2>
+            <h2 className="font-display text-[24px] lg:text-[32px] tracking-[-0.03em] text-[#0B1E36]">Notre vision</h2>
             <p className="mt-3 max-w-3xl text-[15px] leading-7 text-zinc-600">{cabinet.vision}</p>
           </Reveal>
           <Stagger className="mt-8 grid sm:grid-cols-2 lg:grid-cols-6 gap-3">
@@ -98,7 +107,7 @@ export default function CabinetPage() {
       {/* Valeurs */}
       <section id="valeurs" className="mx-auto max-w-[1280px] px-5 lg:px-8 py-10 lg:py-14 scroll-mt-24">
         <Reveal>
-          <h2 className="font-display text-[22px] lg:text-[28px] tracking-[-0.03em] text-[#0B1E36]">Nos valeurs</h2>
+          <h2 className="font-display text-[24px] lg:text-[32px] tracking-[-0.03em] text-[#0B1E36]">Nos valeurs</h2>
           <p className="mt-2 text-sm text-zinc-500">Les principes qui guident chaque dossier.</p>
         </Reveal>
         <Stagger className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
